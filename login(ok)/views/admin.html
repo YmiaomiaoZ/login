@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/admin.css" rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<div>
+    <div class="container-fluid nav">
+
+        <span class="left">电商后台管理	系统</span>
+        <span class="right"><a href="login.html">退出</a></span>
+
+    </div>
+    <div class="container-fluid center">
+        <div class="center-r">
+            <li class="list-unstyled">管理分类</li>
+            <li class="list-unstyled" id="list2">商城分类</li>
+            <li class="none" style="margin-top: 10px;" id="none1">
+                <a href="#" id="man">man</a>
+                <a href="#" id="women">women</a>
+            </li>
+            <li class="list-unstyled"><a href="#">电商首页</a></li>
+            <li class="list-unstyled">购物消费
+            </li>
+            <li class="list-unstyled">商城分类</li>
+        </div>
+        <div class="center-l1" id="man-list">
+            <li class="listt">women-list</li>
+            <li class="listb">
+                <button id="insert">增加</button>
+                <button id="update">更新</button>
+                <button id="find">查找</button>
+                <button id="add">创建列表</button>
+            </li>
+            <div class="list1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>星数</th>
+                        <th>描述</th>
+                        <th>现价</th>
+                        <th>原价</th>
+                    </tr>
+                    </thead>
+                </table>
+                <div class="proList">
+                    <%product.forEach(function(obj){
+                    %>
+                        <input type="text" name="text" class='btn' value='<%=obj.id%>'/>
+                        <input type="text" name="text" class='btn' value='<%=obj.starNumber%>'/>
+                        <input type="text" name="text" class='btn' value='<%=obj.name%>'/>
+                        <input type="text" name="text" class='btn' value='<%=obj.price%>'/>
+                        <input type="text" name="text" class='btn' value='<%=obj.del%>'/>
+                        <button id='remove'  name="btn">删除</button>
+                    <br/>
+                    <%})%>
+                </div>
+            </div>
+        </div>
+        <div class="center-l2" id="women-list">
+            <li class="listt">man-list</li>
+            <li class="listb">
+                <button id="insert1">增加</button>
+                <button id="update1">更新</button>
+                <button id="find1">查找</button>
+                <button id="add1">创建列表</button>
+            </li>
+            <div class="list1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>星数</th>
+                        <th>描述</th>
+                        <th>现价</th>
+                        <th>原价</th>
+                    </tr>
+                    </thead>
+                </table>
+
+                <div class="proList">
+                    <%product.forEach(function(obj){
+                    %>
+                    <input type="text" name="text" class='btn' value='<%=obj.id%>'/>
+                    <input type="text" name="text" class='btn' value='<%=obj.starNumber%>'/>
+                    <input type="text" name="text" class='btn' value='<%=obj.name%>'/>
+                    <input type="text" name="text" class='btn' value='<%=obj.price%>'/>
+                    <input type="text" name="text" class='btn' value='<%=obj.del%>'/>
+                    <button id='remove1'  name="btn">删除</button><br/>
+                    <%})%>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //商品分类
+    var list2=document.getElementById("list2");
+    var none1=document.getElementById("none1");
+    var li=document.getElementsByClassName("list-unstyled");
+    var add=document.getElementById('add');
+    var add1=document.getElementById('add1');
+    var addInput="<div >"+"<input type=\"text\" name=\"text\" class='btn1' style=\"width:183px\" value='sss'/>"+
+            "<input type=\"text\" name=\"text\" class='btn1' style=\"width:182px\" value=''/>"+
+            "<input type=\"text\" name=\"text\" class='btn1' style=\"width:182px\" value=''/>"+
+            "<input type=\"text\" name=\"text\" class='btn1' style=\"width:183px\" value=''/>"+
+            "<input type=\"text\" name=\"text\" class='btn1' style=\"width:180px\" value=''/>"+
+            "<button id='remove'  name=\"btn\">删除</button>"+"</div>"
+
+    //    添加列表
+    add.onclick=function(){
+        var html=[];
+        var proList=document.getElementsByClassName('proList')[0];
+        html.push(addInput);
+        proList.innerHTML+=html.join('');
+    }
+    add1.onclick=function(){
+        var html=[];
+        var proList=document.getElementsByClassName('proList')[1];
+        html.push(addInput);
+        proList.innerHTML+=html.join('');
+    }
+
+    list2.onclick=function(){
+        if(none1.style.display=="none"){
+            none1.style.display="block";
+        }else{
+//            console.log("11");
+            none1.style.display="none";
+        }
+
+    }
+    for(var i=0;i<li.length;i++){
+        li[i].onmousemove=function(){
+            this.style.backgroundColor="#b0c4de";
+            this.style.opacity="0.6";
+            this.style.cursor="pointer"
+        }
+        li[i].onmouseout=function(){
+            this.style.backgroundColor="";
+            this.style.cursor="pointer";
+        }
+    }
+    //		li.onmousemove=function(){
+    //			this.style.backgroundColor="orange";
+    //		}
+    //		li.onmouseout=function(){
+    //			this.style.backgroundColor="";
+    //		}
+    //man women
+    var man=document.getElementById("man");
+    var women=document.getElementById("women");
+    var manList=document.getElementById("man-list");
+    var womenList=document.getElementById("women-list");
+    man.onclick=function(){
+
+        manList.style.display="none";
+        womenList.style.display="block";
+        none1.style.cursor="pointer";
+    }
+    man.onmousemove=function(){
+        this.style.backgroundColor="#94dbb4";
+        this.style.opacity="0.6";
+    }
+    man.onmouseout=function(){
+        this.style.backgroundColor="";
+    }
+
+    women.onclick=function(){
+
+        womenList.style.display="none";
+        manList.style.display="block";
+        none1.style.cursor="pointer";
+
+    }
+    women.onmousemove=function(){
+        this.style.backgroundColor="#94dbb4";
+        this.style.opacity="0.6";
+    }
+    women.onmouseout=function(){
+        this.style.backgroundColor="";
+    }
+</script>
+</body>
+
+</html>
